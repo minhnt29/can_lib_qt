@@ -1,0 +1,1 @@
+git submodule add https://github.com/gabime/spdlog.git third_parties/spdlog

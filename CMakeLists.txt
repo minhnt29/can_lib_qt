@@ -23,19 +23,22 @@ find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
+        SerialBus
         REQUIRED)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_parties/spdlog/include
-                    ${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_parties/spdlog/include)
 
-file(GLOB_RECURSE HEADER ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
-file(GLOB_RECURSE CPP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
+file(GLOB_RECURSE HEADER ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
+                         ${CMAKE_CURRENT_SOURCE_DIR}/can_lib/*.h)
+file(GLOB_RECURSE CPP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp
+                              ${CMAKE_CURRENT_SOURCE_DIR}/can_lib/*.cpp)
 
 add_executable(${PROJECT_NAME} ${HEADER} ${CPP_SOURCES})
 target_link_libraries(${PROJECT_NAME}
         Qt::Core
         Qt::Gui
         Qt::Widgets
+        Qt::SerialBus
 )
 
 if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)

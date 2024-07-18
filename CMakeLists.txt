@@ -29,11 +29,15 @@ find_package(Qt6 COMPONENTS
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/third_parties/spdlog/include)
 
 file(GLOB_RECURSE HEADER ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
-                         ${CMAKE_CURRENT_SOURCE_DIR}/can_lib/*.h)
+                         ${CMAKE_CURRENT_SOURCE_DIR}/can_lib/*.h
+                         ${CMAKE_CURRENT_SOURCE_DIR}/dbc_handle/*.h)
 file(GLOB_RECURSE CPP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp
-                              ${CMAKE_CURRENT_SOURCE_DIR}/can_lib/*.cpp)
+                              ${CMAKE_CURRENT_SOURCE_DIR}/can_lib/*.cpp
+                             )
 
-add_executable(${PROJECT_NAME} ${HEADER} ${CPP_SOURCES})
+add_executable(${PROJECT_NAME} ${HEADER} ${CPP_SOURCES}
+        dbc_handle/dbc_handle.h
+        dbc_handle/dbc_handle.cpp)
 target_link_libraries(${PROJECT_NAME}
         Qt::Core
         Qt::Gui
